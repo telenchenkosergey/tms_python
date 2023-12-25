@@ -7,7 +7,7 @@
 # быть полем класса.
 
 class Publication:
-    _publisher = 'Penguin Pinky'
+    publisher = 'Penguin Publishing'
 
     def __init__(self, title, author, year):
         self.title = title
@@ -17,12 +17,13 @@ class Publication:
     def display(self):
         return f'Title: {self.title}\nAuthor: {self.author}\nYear: {self.year}'
     
-    def get_publisher(self):
-        return f'Publisher: {self._publisher}'
+    @classmethod
+    def get_publisher(cls):
+        return f'Publisher: {cls.publisher}'
     
 
 class Book(Publication):
-    def __init__(self, title, author, year, isbn):
+    def __init__(self, title, author, year, isbn='0-000-00000-0'):
         super().__init__(title, author, year)
         self.isbn = isbn
 
@@ -37,3 +38,8 @@ class Magazine(Publication):
 
     def display(self):
         return super().display() + f'\nISBN: {self.issue_number}'
+
+
+book1 = Book('One Trick Pony', 'D. Nguyen', 2014, '1-123-12345-1')
+print(book1.display())
+print(book1.get_publisher())
